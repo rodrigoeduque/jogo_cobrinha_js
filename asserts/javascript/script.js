@@ -23,7 +23,29 @@ function CriarCobrinha() {
     }
 }
 
+
+
+function update (event) {
+    if (event.keyCode== 37 && direction != "right") direction = "left";
+
+    if (event.keyCode == 38 && direction != "down") direction = "up";
+
+    if (event.keyCode == 39 && direction != "left") direction = "right";
+
+    if (event.keyCode == 40 && direction != "up") direction = "down";
+    
+}
+
+
+document.addEventListener('keydown',update);
+
+
 function iniciarJogo() {
+    if(snake[0].x > 15 * box && direction == "right") snake[0].x = 0;
+    if(snake[0].x < 0 * box && direction == "left") snake[0].x = 16 * box;
+    if(snake[0].y < 15 * box && direction == "down") snake[0].x = 0 * box;
+    if(snake[0].Y < 0 * box && direction == "up") snake[0].x = 16 * box;
+
     criarBG();
     CriarCobrinha();
 
@@ -53,6 +75,9 @@ function iniciarJogo() {
     }
 
     snake.unshift(newHead);
+
+    
 }
 
 let jogo = setInterval(iniciarJogo, 100);
+
